@@ -9,6 +9,7 @@ autopep8 = "*"
 [packages]
 discord-py = "*"
 selenium = "*"
+python-jsonstore = "*"
 
 [requires]
 python_version = "3.7"

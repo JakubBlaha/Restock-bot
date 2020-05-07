@@ -3,7 +3,8 @@ from configparser import ConfigParser
 
 DEFAULTS = {
     'GENERAL': {
-        'token': ''
+        'token': '',
+        'notification_channel_id': ''
     }
 }
 FILENAME = 'config.ini'
@@ -25,6 +26,7 @@ conf = config['GENERAL']
 # Validation
 try:
     assert conf['token'], 'token must be a string'
+    assert conf['notification_channel_id'].isnumeric(), 'notification_channel_id must be a number'
 
 except AssertionError as ex:
     print(ex)
