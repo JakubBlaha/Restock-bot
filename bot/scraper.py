@@ -3,6 +3,7 @@ from typing import List
 from selenium.webdriver import Chrome, ChromeOptions
 
 from .item import RestockedItem
+from .config import conf
 
 
 class Scraper:
@@ -16,6 +17,10 @@ class Scraper:
         # Disable images
         prefs = {"profile.managed_default_content_settings.images": 2}
         opts.add_experimental_option("prefs", prefs)
+
+        # Headless
+        if conf['headless'] == 'True':
+            opts.add_argument('headless')
 
         return Chrome(options=opts)
 

@@ -4,7 +4,8 @@ from configparser import ConfigParser
 DEFAULTS = {
     'GENERAL': {
         'token': '',
-        'notification_channel_id': ''
+        'notification_channel_id': '',
+        'headless': True
     }
 }
 FILENAME = 'config.ini'
@@ -27,6 +28,7 @@ conf = config['GENERAL']
 try:
     assert conf['token'], 'token must be a string'
     assert conf['notification_channel_id'].isnumeric(), 'notification_channel_id must be a number'
+    assert conf['headless'] in ('True', 'False'), 'headless must be True or False'
 
 except AssertionError as ex:
     print(ex)
