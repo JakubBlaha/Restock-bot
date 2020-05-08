@@ -39,6 +39,7 @@ class DiscordBot(Bot):
 
     async def _send_restock(self, item: RestockedItem):
         e = Embed(title=item.title, description=item.description)
+        e.set_thumbnail(url=item.image)
 
         await self._notif_channel.send(embed=e)
 

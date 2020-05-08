@@ -30,10 +30,11 @@ class SupremeScraper(Scraper):
         names = [i.get_attribute('innerText') for i in self.d.find_elements_by_class_name('restock-name')]
         colorways = [i.get_attribute('innerText') for i in self.d.find_elements_by_class_name('restock-colorway')]
         dts = [i.get_attribute('datetime') for i in self.d.find_elements_by_class_name('timeago')]
+        images = [i.get_attribute('src') for i in self.d.find_elements_by_class_name('size-thumbnail')]
 
         items = []
 
-        for name, colorway, dt in zip(names, colorways, dts):
-            items.append(RestockedItem(name, colorway, dt))
+        for name, colorway, dt, img, in zip(names, colorways, dts, images):
+            items.append(RestockedItem(name, colorway, dt, img))
 
         return items

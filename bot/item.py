@@ -7,3 +7,4 @@ class RestockedItem:
     title: str
     description: str
     dt: str
+    image: str
