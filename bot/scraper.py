@@ -6,7 +6,7 @@ from .item import RestockedItem
 
 
 class Scraper:
-    def __init__(self, driver):
+    def __init__(self, driver: Chrome):
         self.d = driver
 
     @staticmethod
@@ -25,4 +25,15 @@ class Scraper:
 
 class SupremeScraper(Scraper):
     def get_restocked(self):
-        return [RestockedItem('test')]
+        self.d.get('https://www.supremecommunity.com/restocks/us/1/')
+
+        names = [i.get_attribute('innerText') for i in self.d.find_elements_by_class_name('restock-name')]
+        colorways = [i.get_attribute('innerText') for i in self.d.find_elements_by_class_name('restock-colorway')]
+        dts = [i.get_attribute('datetime') for i in self.d.find_elements_by_class_name('timeago')]
+
+        items = []
+
+        for name, colorway, dt in zip(names, colorways, dts):
+            items.append(RestockedItem(name, colorway, dt))
+
+        return items

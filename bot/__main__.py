@@ -34,7 +34,7 @@ class DiscordBot(Bot):
             self._restock_manager.set_notified(restock)
 
     async def _send_restock(self, item: RestockedItem):
-        e = Embed(title=item.title)
+        e = Embed(title=item.title, description=item.description)
 
         await self._notif_channel.send(embed=e)
 
