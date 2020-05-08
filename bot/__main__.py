@@ -1,5 +1,7 @@
 import logging
 import sys
+import asyncio
+import random
 from typing import List
 
 from discord import Embed, TextChannel
@@ -24,6 +26,10 @@ class DiscordBot(Bot):
 
     @loop(seconds=10)
     async def work(self):
+        print('sleeping')
+        await asyncio.sleep(random.random() * 5)
+        print('slept')
+
         restocked = self._restock_manager.get_retocked()
 
         await self._send_restocks(restocked)
