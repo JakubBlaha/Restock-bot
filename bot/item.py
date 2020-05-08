@@ -8,3 +8,5 @@ class RestockedItem:
     description: str
     dt: str
     image: str
+    url: str
+    price: str

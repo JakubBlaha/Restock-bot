@@ -25,7 +25,7 @@ class RestockManager:
         ]
 
         for scraper in scrapers:
-            scraped = scraper.get_restocked()
+            scraped = scraper.get_restocked(self._get_all_items())
 
             all_items = self._get_all_items()
             new_items = [i for i in scraped if i not in all_items]
